@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<!--
+	Strongly Typed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>PHP by Examples</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/prism.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
+</head>
+<body class="left-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header-wrapper">
+        <div id="header" class="container">
+
+            <!-- Logo -->
+            <h1 id="logo"><a href="index.html">PHP by Examples</a></h1>
+            <p>Learn PHP by following examples</p>
+
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div id="main-wrapper">
+        <div id="main" class="container">
+            <div class="row">
+
+                <!-- Sidebar -->
+                <div id="sidebar" class="4u 12u(mobile)">
+
+                    <!-- Excerpts -->
+                    <section>
+                        <ul class="">
+                            {% for title, url in toc %}
+                                {% if url != rawname %}
+                                    <li><a href="{{ url }}">{{ title }}</a></li>
+                                {% else %}
+                                    <li><strong>{{ title }}</strong></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </section>
+
+                </div>
+
+                <!-- Content -->
+                <div id="content" class="8u 12u(mobile) important(mobile)">
+
+                    <!-- Post -->
+                    <!-- Post -->
+                    <article class="box post">
+                        <header>
+                            <h2>{{ title }}</h2>
+                        </header>
+
+                        <pre class="language-php line-numbers" id="example"><code>{{ code }}</code></pre>
+
+                        {{ pre | markdown }}
+
+                        {% for line, body in annotations %}
+                            <p><a href="#example.{{ line }}"
+                                  class="annotation"><i>{{ line }}</i>. {{ body | markdown | strippara | raw }}</a></p>
+                        {% endfor %}
+
+                        {{ post | markdown }}
+
+                        <h4>Running</h4>
+                        <pre><code class="language-bash">{{ output }}</code></pre>
+                        {% if eval|length > 0 %}
+                            <a href="{{ eval }}" target="_blank">3v4l</a>
+                        {% endif %}
+                    </article>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-wrapper">
+        <div id="copyright" class="container">
+            <ul class="links">
+                <li>Free to use under the <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">MIT</a>
+                    open source license
+                </li>
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/skel-viewport.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]>
+<script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/prism.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.annotation').click(function (event) {
+            var line = $(this).attr('href').replace('#example.', '')
+            event.preventDefault();
+            $('#example .line-highlight').remove();
+            $('#example').attr('data-line', line)
+            Prism.highlightAll()
+        })
+    })
+</script>
+
+</body>
+</html>

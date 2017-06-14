@@ -1,0 +1,22 @@
+{
+  "name": "geeh/php-by-examples",
+  "description": "PHP by Examples Generator",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gary Hockin",
+      "email": "gary.hockin@jetbrains.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PBE\\": "src/"
+    }
+  },
+  "require": {
+    "codeception/codeception": "^2.3",
+    "twig/twig": "^2.4",
+    "jralph/twig-markdown": "^2.0"
+  }
+}
